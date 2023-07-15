@@ -1,0 +1,38 @@
+server:
+  port: 9999
+spring:
+
+  redis:
+    host: 39.101.64.199
+    port: 6379
+    database: 0
+    session:
+      store-type: redis
+  servlet:
+    session:
+      timeout: 1800
+      redis:
+        flush-mode: on_save
+        namespace: spring:session
+
+
+  #时间格式化
+  jackson:
+    data-format: 'yyyy-MM-dd'
+    time-zone: 'GMT+8'
+  datasource:
+    url: jdbc:mysql://localhost:3306/mycnblog?characterEncoding=utf8&useSSL=false
+    username: ""
+    # 注意！写你自己的密码
+    password: ""
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  # mybatis xml 保存路径
+mybatis:
+  mapper-locations: classpath:mybatis/*Mapper.xml
+  # 开启 mybatis sql 日志打印
+  configuration.log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+    com:
+      example:
+        demo: debug

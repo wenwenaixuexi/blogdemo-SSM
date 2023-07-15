@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ArticleMapper">
+
+    <insert id="add">
+        insert into userinfo(username,password) values(#{username},#{password})
+    </insert>
+
+    <select id="getArtCountByUid" resultType="Integer">
+        select count(*) from articleinfo where uid=#{uid}
+    </select>
+
+    <select id="getMyArtList" resultType="com.example.demo.entity.ArticleInfo">
+        select * from articleinfo where uid=#{uid}
+    </select>
+
+    <delete id="del">
+        delete from articleinfo where id = #{id} and uid = #{uid}
+    </delete>
+    <select id="getDetail" resultType="com.example.demo.entity.ArticleInfo">
+        select * from articleinfo where id = #{id}
+    </select>
+
+
+
+    <update id="incrRCount">
+        update articleinfo set rcount=rcount+1 where id=#{id}
+    </update>
+
+    <insert id="addArticle">
+        insert into articleinfo(title,content,uid) values(#{title},#{content},#{uid})
+    </insert>
+
+    <update id="update">
+        update articleinfo set title=#{title},content=#{content},updatetime=#{updatetime}
+        where id=#{id} and uid=#{uid}
+    </update>
+
+    <select id="getListByPage" resultType="com.example.demo.entity.ArticleInfo">
+        select * from articleinfo limit #{psize} offset #{offset}
+    </select>
+
+    <select id="getCount" resultType="Integer">
+        select COUNT(*) from articleinfo
+    </select>
+</mapper>
